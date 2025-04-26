@@ -1,0 +1,10 @@
+.srchInpt {
+  width: 276px;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.srchInpt:focus {
+  outline-color: dodgerblue;
+  /* border-color: blue; */
+}
