@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "../../redux/filtersSlice";
+import { changeFilter, selectNameFilter } from "../../redux/filtersSlice";
 import clsx from "clsx";
 import s from "./SearchBox.module.css";
 
 export default function SearchBox() {
-  const nameFilter = useSelector((state) => {
-    return state.filters.name;
-  });
+  const nameFilter = useSelector(selectNameFilter);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     dispatch(changeFilter(e.target.value));

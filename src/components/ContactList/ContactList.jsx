@@ -1,15 +1,18 @@
 import Contact from "../Contact/Contact";
 import clsx from "clsx";
 import s from "./ContactList.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contactsOps";
+import { selectContacts } from "../../redux/contactsSlice";
 
 export default function ContactList() {
-  const contacts = useSelector((state) => state.contacts.items);
-  const nameFilter = useSelector((state) => state.filters.name);
+  const dispatch = useDispatch();
+  const visibleContacts = useSelector(selectContacts);
 
-  const visibleContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(nameFilter.toLowerCase())
-  );
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div className={clsx(s.contactList)}>
